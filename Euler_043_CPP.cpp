@@ -5,17 +5,20 @@
 #include <iostream>
 #include <algorithm>
 #include <sstream>
+#include <chrono>
 
 using namespace std;
+using namespace std::chrono;
 
 int main()
 {
+    auto start = high_resolution_clock::now();
     long long int total = 0;
-    string str("0123456789"); //48 is ASCII offset
+    string str("1023456789"); //48 is ASCII offset
     do
     {
         // series of and statements accounting for each condition
-        if (str[0] != '0' && (str[3] - 48) % 2 == 0 &&\
+        if ((str[3] - 48) % 2 == 0 &&\
             ((str[2] - 48) + (str[3] - 48) + (str[4] - 48)) % 3 == 0 &&\
             (str[5] - 48) % 5 == 0 &&\
             ((100 * (str[4] - 48) + 10 * (str[5] - 48) + (str[6] - 48)) % 7 == 0) &&\
@@ -32,7 +35,12 @@ int main()
             
     } while (next_permutation(str.begin(), str.end()));
 
-    cout << endl << total;
+    cout << endl << "The total is: " << total << endl;
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(stop - start);
+
+    cout << "Time taken by function: "
+        << duration.count() << " milliseconds" << endl;
 }
 
 // indexes are d values - 1
