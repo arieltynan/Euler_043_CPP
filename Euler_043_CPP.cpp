@@ -3,7 +3,6 @@
 //
 
 #include <iostream>
-#include <vector>
 #include <algorithm>
 #include <sstream>
 
@@ -25,7 +24,6 @@ int main()
             (100 * (str[7] - 48) + 10 * (str[8] - 48) + (str[9] - 48)) % 17 == 0)
 
         {
-            //cout << str << " ";
             stringstream stream(str);
             long long int x = 0;
             stream >> x;
